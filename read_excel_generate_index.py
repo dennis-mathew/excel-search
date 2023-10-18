@@ -1,16 +1,18 @@
+import os
 import pandas as pd
 import re
 import pickle
-
 import faiss
 from generate_embeddings import generate_embedding
+from dotenv import load_dotenv
 
 from vector_store import VectorStore
 
 store = VectorStore()
+load_dotenv()
 
 def read_excel_generate_index():
-    data = pd.read_excel('E:/Downloads/viosa/interview_data.xlsx')
+    data = pd.read_excel(os.getenv('EXCEL_PATH'))
 
     url_pattern = r'https?://\S+'
     # Create a dictionary to store cell references and their corresponding embeddings
